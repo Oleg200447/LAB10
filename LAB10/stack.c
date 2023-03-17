@@ -102,12 +102,12 @@ void freeStackWord(Word_c** head)
 
 
 
-Node_t* chekerForWordInStack(Node_t* head, char* word)
+Node_t* chekerForWordInStack(Node_t* head,const char* word)
 {
     Node_t* tmp = head;
     while (tmp)
     {
-        if (strcmp((tmp)->word, word) == EQUAL)
+        if (strcmp(tmp->word, word) == EQUAL)
         {
             return tmp;
         }
@@ -134,8 +134,6 @@ void addWordInStack(Node_t** head,char * word)
 
 char* takeWordFromStack(Node_t* head,int place)
 {
-    Node_t* storer = NULL;
-
     for (int i = 1; i < place; i++)
     {
         head = head->next;

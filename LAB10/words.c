@@ -67,10 +67,6 @@ int findSizeOfWOrd(const char* str, int *index)
         (* index)++;
     }
 
-    if (*index >= (int)strlen(str))
-    {
-        exit(BRODE_STRING_FAIL);
-    }
 
     return size;
 }
@@ -82,8 +78,9 @@ void takeWordsFromString(FILE* text, Node_t** head)
 
     int size_str =(int) strlen(str);
 
-    for (int i = 0; i <size_str; i++)
+    for (int j = 0; j <size_str; j++)
     {
+        int i = j;
         if ((*(str + i) >= 'A' && *(str + i) <= 'Z') || (*(str + i) >= 'a' && *(str + i) <= 'z') || (*(str + i) >= 'À' && *(str + i) <= 'ß') || (*(str + i) >= 'à' && *(str + i) <= 'ÿ'))
         {           
             int size = findSizeOfWOrd(str, &i);
@@ -91,7 +88,10 @@ void takeWordsFromString(FILE* text, Node_t** head)
             
             addWordInStack(head, word);
         }
+        j = i;
     }
+
+    free(str);
 }
 
 
@@ -124,7 +124,7 @@ int findProfit(const Node_t* head_long_word,const Node_t* head_short_word)
 
 
 
-int findShortWord(Node_t* head_long, Node_t* head_short, int* profit, int* cheker)
+int findShortWord(const Node_t* head_long, Node_t* head_short, int* profit, int* cheker)
 {
     int place = 1;
     int place_of_word = 0;

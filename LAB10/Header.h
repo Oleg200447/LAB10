@@ -29,7 +29,7 @@ void showStackAmount(const Node_t* head);
 
 Node_t* popAmount(Node_t** head);
 
-Node_t* chekerForWordInStack(Node_t* head, char* word);
+Node_t* chekerForWordInStack(Node_t* head,const char* word);
 
 void addWordInStack(Node_t** head, char* word);
 
@@ -67,7 +67,7 @@ void findWordsAmount(Node_t** head);
 
 int findProfit(const Node_t* head_long_word, const Node_t* head_short_word);
 
-int findShortWord(Node_t* head_long, Node_t* head_short, int* profit, int* cheker);
+int findShortWord(const Node_t* head_long, Node_t* head_short, int* profit, int* cheker);
 
 int findPlacesOfWordsAndProfit(Node_t* head_long, Node_t* head_short, int* place_long_word, int* place_short_word);
 
@@ -86,7 +86,7 @@ char* changeOneStr(char** str, Word_c* list);
 
 void changePairOneString(char** str, Word_c* pair);
 
-void changeWord(char** str, Word_c* pair, char* word, int* end_word);
+void changeWord(char** str,const Word_c* pair,const char* word, int* end_word);
 
 
 char* makeSymbol();

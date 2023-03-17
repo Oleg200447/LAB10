@@ -7,7 +7,7 @@
 #define TEN_KB 10240
 #define NULL_ENTER_SYMBOL 1
 
-void changeWord(char** str, Word_c* pair, char* word, int *end_word)
+void changeWord(char** str,const Word_c* pair,const char* word, int *end_word)
 {
     if (strcmp(word,pair->word_short)==0)
     {
@@ -60,8 +60,7 @@ void changeWord(char** str, Word_c* pair, char* word, int *end_word)
 }
 
 void changePairOneString(char** str, Word_c* pair)
-{
-    int pos_for_next = 0;
+{   
     int place_in_str = 0;
 
     while(place_in_str+1< (int)strlen(*str))
@@ -97,7 +96,7 @@ char*  changeOneStr(char ** str, Word_c* list)
 
 void addLibrary(Word_c* list,FILE*text_compr)
 {
-    char* symb = makeSymbol();
+    const char* symb = makeSymbol();
     
     fputs(symb, text_compr);
 
@@ -146,6 +145,8 @@ void compression(Word_c* list)
             getStr(&str_before, text);
             changeOneStr(&str_before, list);
             fputs(str_before, text_compr);
+
+            free(str_before);
         }
         fclose(text_compr);
         fclose(text);
