@@ -11,13 +11,16 @@
 #define ADD_PAIR 1
 #define NO_PAIR 0
 
+#define STRING_NULL 1
+#define BRODE_STRING_FAIL 1
+
 #define PROFIT 1
 #define NO_PROFIT 0
 
 #define LONGEST_SHORT_WORD 3
 
 
-char* memoryForWord(char*word_for_memory)
+char* memoryForWord(const char*word_for_memory)
 {
 	char* word;
 	word = (char*)calloc(strlen(word_for_memory) + 1, sizeof(char));
@@ -34,11 +37,15 @@ void getStr(char** str, FILE* text)
         {
             *str = storer;
         }
+        else
+        {
+            exit(STRING_NULL);
+        }
     }
 }
 
 
-char* wordCopy(char* str, int index,int size)
+char* wordCopy(const char* str, int index,int size)
 {
     char* word = (char*)calloc(size + 1, sizeof(char));
     if (word != NULL)
@@ -51,13 +58,18 @@ char* wordCopy(char* str, int index,int size)
     return word;
 }
 
-int findSizeOfWOrd(char* str, int *index)
+int findSizeOfWOrd(const char* str, int *index)
 {
     int size = 0;
     while ((*(str + *index) >= 'A' && *(str + *index) <= 'Z') || (*(str + *index) >= 'a' && *(str + *index) <= 'z') || (*(str + *index) >= 'À' && *(str + *index) <= 'ß') || (*(str + *index) >= 'à' && *(str + *index) <= 'ÿ'))
     {
         size++;
         (* index)++;
+    }
+
+    if (*index >= (int)strlen(str))
+    {
+        exit(BRODE_STRING_FAIL);
     }
 
     return size;
@@ -103,7 +115,7 @@ void findWordsAmount(Node_t** head)
     
 }
 
-int findProfit(Node_t* head_long_word, Node_t* head_short_word)
+int findProfit(const Node_t* head_long_word,const Node_t* head_short_word)
 {
     int profit = (head_long_word->size * (head_long_word->amount) + head_short_word->size * (head_short_word->amount)) - (head_long_word->size * (head_short_word->amount) + head_short_word->size * (head_long_word->amount));
 
@@ -144,12 +156,9 @@ int findShortWord(Node_t* head_long, Node_t* head_short, int* profit, int* cheke
 
 int findPlacesOfWordsAndProfit(Node_t* head_long, Node_t* head_short, int* place_long_word, int* place_short_word)
 {
-    int place_of_word = 0;
     int place = 1;
-    int size_word = 0;
     int profit = 0;
     int cheker = 0;
-
 
     while (head_long)
     {
@@ -225,14 +234,14 @@ char* makeSymbol()
     return symb;
 }
 
-char* makeString(Word_c* list)
+char* makeString(const Word_c* list)
 {
     int size = (int)strlen(list->word_long) + (int)strlen(list->word_short) + 3;
     char* str = calloc(size, sizeof(char));
     return str;
 }
 
-void addWordToString(char**str,char* word,int *counter)
+void addWordToString(char**str,const char* word,int *counter)
 {
     int i = 0;
     while (*(word + i) != '\0')

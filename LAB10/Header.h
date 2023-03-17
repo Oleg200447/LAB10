@@ -54,18 +54,18 @@ void makeTwoStacks(Node_t** head, Node_t** head_long_words, Node_t** head_short_
 
 void getStr(char** str, FILE* text);
 
-char* memoryForWord(char* word_for_memory);
+char* memoryForWord(const char* word_for_memory);
 
-int findSizeOfWOrd(char* str, int* index);
+int findSizeOfWOrd(const char* str, int* index);
 
-char* wordCopy(char* str, int index, int size);
+char* wordCopy(const char* str, int index, int size);
 
 void takeWordsFromString(FILE* text, Node_t** head);
 
 void findWordsAmount(Node_t** head);
 
 
-int findProfit(Node_t* head_long_word, Node_t* head_short_word);
+int findProfit(const Node_t* head_long_word, const Node_t* head_short_word);
 
 int findShortWord(Node_t* head_long, Node_t* head_short, int* profit, int* cheker);
 
@@ -91,7 +91,7 @@ void changeWord(char** str, Word_c* pair, char* word, int* end_word);
 
 char* makeSymbol();
 
-char* makeString(Word_c* list);
+char* makeString(const Word_c* list);
 
-void addWordToString(char** str, char* word, int* counter);
+void addWordToString(char** str,const char* word, int* counter);
 
