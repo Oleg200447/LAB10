@@ -1,6 +1,7 @@
 ﻿#include <stdio.h>
 #include"Header.h"
 #include<stdlib.h>
+#include<string.h>
 
 int main()
 {
@@ -22,5 +23,7 @@ int main()
 	
 	compression(list);
 	
+
+
 	return 0;
 }

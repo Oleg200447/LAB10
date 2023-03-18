@@ -31,8 +31,13 @@ void getStr(char** str, FILE* text)
 {
     if (*str != NULL)
     {
+        char* storer = (char*)realloc(*str, TEN_KB * sizeof(char));
+        if (storer != NULL)
+        {
+            *str = storer;
+        }
         fgets(*str, TEN_KB, text);
-        char* storer = (char*)realloc(*str, (strlen(*str) + 1) * sizeof(char));
+        storer = (char*)realloc(*str, (strlen(*str) + 1) * sizeof(char));
         if (storer != NULL)
         {
             *str = storer;

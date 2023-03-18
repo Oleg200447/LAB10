@@ -125,15 +125,23 @@ void decompression(Word_c* list)
     {
         goToInfo(text);
 
+        char* str_before = (char*)calloc(TEN_KB, sizeof(char));
+
         while (!feof(text))
         {
-            char* str_before = (char*)calloc(TEN_KB, sizeof(char));
             getStr(&str_before, text);
             changeOneStr(&str_before, list);
+            if (feof(text))
+            {
+                break;
+            }
             fputs(str_before, text_compr);
         }
+
         fclose(text_compr);
         fclose(text);
+
+        free(str_before);
         freeStackWord(&list);
     }
 }
