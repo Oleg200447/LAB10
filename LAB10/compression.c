@@ -59,7 +59,7 @@ void changeWord(char** str,const Word_c* pair,const char* word, int *end_word)
     }
 }
 
-void changePairOneString(char** str, Word_c* pair)
+void changePairOneString(char** str,const Word_c* pair)
 {   
     int place_in_str = 0;
 
@@ -68,7 +68,7 @@ void changePairOneString(char** str, Word_c* pair)
         if ((*(*str + place_in_str) >= 'A' && *(*str + place_in_str) <= 'Z') || (*(*str + place_in_str) >= 'a' && *(*str + place_in_str) <= 'z') || (*(*str + place_in_str) >= 'À' && *(*str + place_in_str) <= 'ß') || (*(*str + place_in_str) >= 'à' && *(*str + place_in_str) <= 'ÿ'))
         {
             int size = findSizeOfWOrd(*str, &place_in_str);
-            char* word = wordCopy(*str, place_in_str - size, size);
+            const char* word = wordCopy(*str, place_in_str - size, size);
 
             changeWord(str, pair, word, &place_in_str);
         }
