@@ -1,4 +1,4 @@
-#include"Header.h"
+#include"words.h"
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -81,10 +81,7 @@ void takeWordsFromString(FILE* text, Node_t** head)
     char* str = (char*)calloc(TEN_KB, sizeof(char));
     getStr(&str, text);
 
-    int size_str =(int) strlen(str);
-
     int i = 0;
-
     while(*(str+i)!='\0')
     {      
         if ((*(str + i) >= 'A' && *(str + i) <= 'Z') || (*(str + i) >= 'a' && *(str + i) <= 'z') || (*(str + i) >= 'À' && *(str + i) <= 'ß') || (*(str + i) >= 'à' && *(str + i) <= 'ÿ'))

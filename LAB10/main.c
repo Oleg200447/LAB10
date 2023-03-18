@@ -1,7 +1,9 @@
 ﻿#include <stdio.h>
-#include"Header.h"
 #include<stdlib.h>
-#include<string.h>
+#include"compression.h"
+#include"stack.h"
+#include"words.h"
+
 
 int main()
 {

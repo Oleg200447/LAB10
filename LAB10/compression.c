@@ -1,4 +1,5 @@
-#include"Header.h"
+#include"compression.h"
+#include"words.h"
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
