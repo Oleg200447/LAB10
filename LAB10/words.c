@@ -83,9 +83,10 @@ void takeWordsFromString(FILE* text, Node_t** head)
 
     int size_str =(int) strlen(str);
 
-    for (int j = 0; j <size_str; j++)
-    {
-        int i = j;
+    int i = 0;
+
+    while(*(str+i)!='\0')
+    {      
         if ((*(str + i) >= 'A' && *(str + i) <= 'Z') || (*(str + i) >= 'a' && *(str + i) <= 'z') || (*(str + i) >= 'À' && *(str + i) <= 'ß') || (*(str + i) >= 'à' && *(str + i) <= 'ÿ'))
         {           
             int size = findSizeOfWOrd(str, &i);
@@ -93,7 +94,7 @@ void takeWordsFromString(FILE* text, Node_t** head)
             
             addWordInStack(head, word);
         }
-        j = i;
+        i++;
     }
 
     free(str);
