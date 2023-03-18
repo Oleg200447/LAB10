@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"words.h"
 
 #define FIRST_TIME_MEET 1
 #define EQUAL 0
