@@ -24,6 +24,16 @@ void changeWord(char** str,const Word_c* pair,const char* word, int *end_word)
             *str = storer;
         }
 
+        if (storer == NULL)
+        {
+            free(*str);
+            free(pair->word_long);
+            free(pair->word_short);
+            free(word);
+
+            exit(NULL_ENTER_SYMBOL);
+        }
+
         for (int i = size_new_str; i > start_word+ def_in_size; i--)
         {
             *(*str + i) = *(*str + i - def_in_size);
@@ -143,6 +153,11 @@ void compression(Word_c* list)
         addLibrary(list, text_compr);
 
         char* str_before = (char*)calloc(TEN_KB, sizeof(char));
+        if (str_before == NULL)
+        {
+            freeStackWord(list);
+            exit(NULL_ENTER_SYMBOL);
+        }
 
         while (!feof(text))
         {           
