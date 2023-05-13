@@ -23,7 +23,7 @@
 char* memoryForWord(const char*word_for_memory)
 {
 	char* word;
-	word = (char*)calloc(strnlen_s(word_for_memory<TEN_KB) + 1, sizeof(char));
+	word = (char*)calloc(strnlen_s(word_for_memory,TEN_KB) + 1, sizeof(char));
 	return word;
 }
 
@@ -37,7 +37,7 @@ void getStr(char** str, FILE* text)
             *str = storer;
         }
         fgets(*str, TEN_KB, text);
-        storer = (char*)realloc(*str, (strnlen_s(*str,TEN_KB) + 1) * sizeof(char));
+        storer = (char*)realloc(*str, (strnlen_s(*str,(size_t)TEN_KB) + 1) * sizeof(char));
         if (storer != NULL)
         {
             *str = storer;
