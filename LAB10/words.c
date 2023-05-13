@@ -23,7 +23,7 @@
 char* memoryForWord(const char*word_for_memory)
 {
 	char* word;
-	word = (char*)calloc(strlen(word_for_memory) + 1, sizeof(char));
+	word = (char*)calloc(strnlen_s(word_for_memory<TEN_KB) + 1, sizeof(char));
 	return word;
 }
 
@@ -37,7 +37,7 @@ void getStr(char** str, FILE* text)
             *str = storer;
         }
         fgets(*str, TEN_KB, text);
-        storer = (char*)realloc(*str, (strlen(*str) + 1) * sizeof(char));
+        storer = (char*)realloc(*str, (strnlen_s(*str,TEN_KB) + 1) * sizeof(char));
         if (storer != NULL)
         {
             *str = storer;
@@ -211,7 +211,7 @@ void makeStackOfWords(Node_t** head_long, Node_t** head_short, Word_c ** list)
         char* long_word = takeWordFromStack(*head_long, place_long_word);     
         char* short_word = takeWordFromStack(*head_short, place_short_word);
                 
-        if (chekerForProfit((int)strlen(long_word), (int)strlen(short_word) ,profit) == PROFIT && flg == ADD_PAIR)
+        if (chekerForProfit((int)strnlen_s(long_word,TEN_KB), (int)strnlen_s(short_word,TEN_KB) ,profit) == PROFIT && flg == ADD_PAIR)
         {                                            
             pushWord(list, long_word, short_word);                      
         }
@@ -239,7 +239,7 @@ char* makeSymbol()
 
 char* makeString(const Word_c* list)
 {
-    int size = (int)strlen(list->word_long) + (int)strlen(list->word_short) + 3;
+    int size = (int)strnlen_s(list->word_long,TEN_KB) + (int)strnlen_s(list->word_short,TEN_KB) + 3;
     char* str = calloc(size, sizeof(char));
     return str;
 }

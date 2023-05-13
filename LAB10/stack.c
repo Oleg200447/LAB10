@@ -9,6 +9,7 @@
 
 #define LONGEST_SHORT_WORD 3
 
+#define TEN_KB 10240
 
 void pushAmount(Node_t** head, char* word,int amount) {
     Node_t* storer = malloc(sizeof(Node_t));
@@ -19,7 +20,7 @@ void pushAmount(Node_t** head, char* word,int amount) {
     storer->amount = amount;
     storer->word=memoryForWord(word);
     storer->word = word;
-    storer->size =(int) strlen(word);
+    storer->size =(int) strnlen_s(word,TEN_KB);
     storer->using = NO_USED;
     *head = storer;
 }

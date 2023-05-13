@@ -25,7 +25,5 @@ int main()
 	
 	compression(list);
 	
-
-
 	return 0;
 }
