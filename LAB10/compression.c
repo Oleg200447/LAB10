@@ -48,27 +48,30 @@ void changeWord(char** str,const Word_c* pair,const char* word, int *end_word)
 
     if (strcmp(word ,pair->word_long)==0)
     {
-        int start_word = *end_word - (int)strnlen_s(word, TEN_KB);
-        int def_in_size = (int)strnlen_s(pair->word_long, TEN_KB) - (int)strnlen_s(pair->word_short, TEN_KB);
-        int size_old_str = (int)strnlen_s(*str,TEN_KB);
-        int size_new_str = ((int)strnlen_s(*str,TEN_KB) - def_in_size+ NULL_ENTER_SYMBOL);
-
-        for (int i = start_word + 1; i< size_old_str - def_in_size+1; i++)
+        if (*str != NULL && pair->word_short != NULL)
         {
-            *(*str + i) = *(*str + i + def_in_size);
+            int start_word = *end_word - (int)strnlen_s(word, TEN_KB);
+            int def_in_size = (int)strnlen_s(pair->word_long, TEN_KB) - (int)strnlen_s(pair->word_short, TEN_KB);
+            int size_old_str = (int)strnlen_s(*str, TEN_KB);
+            int size_new_str = ((int)strnlen_s(*str, TEN_KB) - def_in_size + NULL_ENTER_SYMBOL);
+
+            for (int i = start_word + 1; i < size_old_str - def_in_size + 1; i++)
+            {
+                *(*str + i) = *(*str + i + def_in_size);
+            }
+
+            for (int i = start_word, j = 0; i < start_word + (int)strnlen_s(pair->word_short, TEN_KB); i++, j++)
+            {
+                *(*str + i) = *(pair->word_short + j);
+                *end_word = i + 1;
+            }
+
+            char* storer = (char*)realloc(*str, size_new_str * sizeof(char));
+            if (storer != NULL)
+            {
+                *str = storer;
+            }
         }
-
-        for (int i = start_word, j = 0; i < start_word + (int)strnlen_s(pair->word_short, TEN_KB); i++, j++)
-        {
-            *(*str + i) = *(pair->word_short + j);
-            *end_word = i + 1;
-        }
-
-        char* storer = (char*)realloc(*str, size_new_str * sizeof(char));
-        if (storer != NULL)
-        {
-            *str = storer;
-        }    
     }
 }
 
